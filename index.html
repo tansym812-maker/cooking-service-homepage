@@ -366,6 +366,25 @@
     font-family: inherit;
   }
 
+  .form-success-msg, .form-error-msg {
+    padding: 16px 20px;
+    border-radius: var(--radius);
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    text-align: center;
+  }
+  .form-success-msg {
+    background: #e8f5e9;
+    border: 1px solid #a5d6a7;
+    color: #2e7d32;
+  }
+  .form-error-msg {
+    background: #fff3e0;
+    border: 1px solid #ffcc80;
+    color: #e65100;
+  }
+
   /* ===== 3. こんな方におすすめ ===== */
   .recommend { background: var(--beige); }
 
@@ -1221,12 +1240,17 @@
       <!-- お問い合わせフォーム -->
       <div class="contact-form">
         <h3>お問い合わせフォーム</h3>
-        <form action="https://formsubmit.co/mk.work@matsukayo-web.com" method="POST">
-          <!-- フォームの設定（メールの件名・迷惑メール対策） -->
-          <input type="hidden" name="_subject" value="【HP】お問い合わせがありました">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="text" name="_honey" style="display:none">
 
+        <!-- 送信完了メッセージ（?sent=1 のときに表示） -->
+        <div id="form-success" class="form-success-msg" style="display:none;">
+          <p>お問い合わせありがとうございます！<br>内容を確認のうえ、2〜3営業日以内にご連絡いたします。</p>
+        </div>
+        <div id="form-error" class="form-error-msg" style="display:none;">
+          <p>送信中にエラーが発生しました。お手数ですが、メールにてご連絡ください。</p>
+        </div>
+
+        <!-- GAS_WEB_APP_URL の部分を、claspデプロイ後のウェブアプリURLに差し替える -->
+        <form id="contact-form" action="https://script.google.com/macros/s/AKfycby8rn6jaToZlO-BV4JR6Z0ZnvCmnCXJnxsyJ-uaDWZePwiRyCedjnB2yIK0MmBUJeGR/exec" method="POST" target="_top">
           <div class="form-group">
             <label>お名前<span class="required">必須</span></label>
             <input type="text" name="お名前" required placeholder="例：山田 花子">
@@ -1271,6 +1295,23 @@
 <div class="fixed-cta">
   <a href="#contact" class="btn btn-primary">お問い合わせはこちら</a>
 </div>
+
+<script>
+  // 送信完了メッセージの表示（GASリダイレクト後）
+  (function () {
+    var p = new URLSearchParams(window.location.search);
+    if (p.get('sent') === '1') {
+      document.getElementById('form-success').style.display = 'block';
+      document.getElementById('contact-form').style.display = 'none';
+      document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+      history.replaceState(null, '', window.location.pathname);
+    } else if (p.get('sent') === 'error') {
+      document.getElementById('form-error').style.display = 'block';
+      document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+      history.replaceState(null, '', window.location.pathname);
+    }
+  })();
+</script>
 
 </body>
 </html>
