@@ -15,7 +15,8 @@ var HOMEPAGE_URL = 'https://tansym812-maker.github.io/cooking-service-homepage/'
 // ===================================================
 function doPost(e) {
   try {
-    var params = e.parameter;
+    var params = e.parameter || {};
+
     var sheet = SpreadsheetApp
       .openById(SPREADSHEET_ID)
       .getSheetByName(SHEET_NAME);
@@ -24,11 +25,11 @@ function doPost(e) {
 
     sheet.appendRow([
       timestamp,
-      params['お名前']          || '',
-      params['メールアドレス']  || '',
-      params['お住まいのエリア'] || '',
-      params['ご希望のプラン']  || '',
-      params['お問い合わせ内容'] || '',
+      params['namae']   || '',
+      params['email']   || '',
+      params['area']    || '',
+      params['plan']    || '',
+      params['message'] || '',
       '未対応',
       ''
     ]);
