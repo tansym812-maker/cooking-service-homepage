@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>まつかよの作り置きサポート｜神戸市北区の料理代行・作り置きサービス</title>
+<title>作り置きサポート｜神戸市北区の料理代行・作り置きサービス</title>
 <meta name="description" content="神戸市北区（藤原台・岡場・有野・八多町周辺）の料理代行・作り置きサービス。調理師がご家庭に合わせた家庭料理を丁寧にお作りします。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -254,6 +254,31 @@
     line-height: 1.6;
   }
 
+  .service-tags-lead {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #8A7B6C;
+    margin-top: 36px;
+    margin-bottom: 12px;
+  }
+
+  .service-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .service-tag {
+    background: #fff;
+    border: 1.5px solid var(--green-main);
+    color: var(--green-main);
+    font-weight: 500;
+    font-size: 0.9rem;
+    padding: 7px 18px;
+    border-radius: 999px;
+  }
+
   .service-note {
     margin-top: 30px;
     text-align: center;
@@ -425,24 +450,23 @@
   /* ===== 4. 料金プラン ===== */
   .price-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    max-width: 720px;
+    margin: 0 auto;
   }
 
   .price-card {
     background: #fff;
     border-radius: var(--radius);
     box-shadow: var(--shadow);
-    padding: 30px 24px;
+    padding: 34px 24px 28px;
     text-align: center;
     position: relative;
     border: 2px solid transparent;
   }
 
-  .price-card.featured { border-color: var(--green-main); }
-
   .price-card.best {
-    grid-column: span 2;
     border-color: #D97B3A;
     background: linear-gradient(135deg, #fffdf9 0%, #fff5ea 100%);
   }
@@ -477,20 +501,36 @@
     font-size: 1.2rem;
   }
 
+  .price-card .plan-tag {
+    font-size: 0.82rem;
+    color: #8A7B6C;
+    margin-bottom: 4px;
+  }
+
   .price-card .detail {
     font-size: 0.88rem;
     color: #8A7B6C;
     margin-bottom: 14px;
   }
 
+  .price-card .price-label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #8A7B6C;
+    margin-bottom: 2px;
+    letter-spacing: 0.06em;
+  }
+
   .price-card .price {
-    font-size: 1.7rem;
+    font-size: 2rem;
     font-weight: 700;
     color: var(--green-main);
+    line-height: 1.3;
   }
 
   .price-card.best .price {
-    font-size: 1.9rem;
+    font-size: 2.2rem;
     color: #D97B3A;
   }
 
@@ -500,10 +540,32 @@
     font-weight: 400;
   }
 
-  .price-card .price-sub {
+  .price-card .per-visit {
+    display: inline-block;
+    background: var(--green-light);
+    color: var(--brown);
     font-size: 0.88rem;
-    color: #8A7B6C;
-    margin-top: 6px;
+    font-weight: 700;
+    border-radius: 999px;
+    padding: 5px 18px;
+    margin-top: 12px;
+  }
+
+  .price-card.best .per-visit {
+    background: #FBE8D8;
+    color: #B45E24;
+  }
+
+  .price-tax-note {
+    text-align: center;
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--brown);
+    background: var(--green-light);
+    border-radius: 999px;
+    padding: 12px 24px;
+    max-width: 640px;
+    margin: 28px auto 0;
   }
 
   .option-grid {
@@ -639,6 +701,40 @@
 
   .flow-body p { font-size: 0.92rem; }
 
+  .hearing-card {
+    max-width: 640px;
+    margin: 40px auto 0;
+    background: #fff;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 30px 32px;
+  }
+
+  .hearing-card h3 {
+    color: var(--brown);
+    font-size: 1.1rem;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  .hearing-card p {
+    font-size: 0.95rem;
+    margin-bottom: 14px;
+  }
+
+  .hearing-note {
+    background: var(--green-light);
+    border-radius: 14px;
+    padding: 16px 20px;
+    margin-top: 4px;
+  }
+
+  .hearing-note p {
+    font-size: 0.9rem;
+    color: var(--brown);
+    margin-bottom: 0;
+  }
+
   /* ===== 7. 自己紹介 ===== */
   .profile { background: var(--beige); }
 
@@ -673,6 +769,11 @@
   .profile-body p { margin-bottom: 14px; font-size: 0.95rem; }
 
   .profile-body p:last-child { margin-bottom: 0; }
+
+  .profile-note {
+    font-size: 0.8rem;
+    color: #A08F7B;
+  }
 
   /* ===== 安心してご利用いただくために ===== */
   .safety { background: var(--green-light); }
@@ -855,7 +956,6 @@
     .point-card h3 { font-size: 0.88rem; }
 
     .price-grid, .option-grid, .safety-grid { grid-template-columns: 1fr; }
-    .price-card.best { grid-column: span 1; }
 
     .area-inner { grid-template-columns: 1fr; }
 
@@ -882,7 +982,7 @@
 <!-- ヘッダー -->
 <header>
   <div class="header-inner">
-    <a href="#" class="logo">まつかよの<span>作り置きサポート</span></a>
+    <a href="#" class="logo"><span>作り置きサポート</span></a>
     <a href="#contact" class="header-cta">お問い合わせ</a>
   </div>
 </header>
@@ -929,6 +1029,14 @@
         <div class="icon"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M2 12h20"></path><path d="M4 12a8 8 0 0 0 16 0"></path><line x1="12" y1="20" x2="12" y2="22"></line><line x1="9" y1="22" x2="15" y2="22"></line></svg></div>
         <h3>食べきりやすい量</h3>
       </div>
+    </div>
+    <p class="service-tags-lead">こんなご相談も承ります</p>
+    <div class="service-tags">
+      <span class="service-tag">家庭料理</span>
+      <span class="service-tag">作り置き</span>
+      <span class="service-tag">薄味相談</span>
+      <span class="service-tag">アレルギー相談</span>
+      <span class="service-tag">ビーガン応相談</span>
     </div>
     <p class="service-note">
       ※食材や調理環境、メニュー内容によっては7〜8品ほどお作りできる場合もあります。
@@ -997,37 +1105,43 @@
 <section id="price">
   <div class="container">
     <h2 class="section-title">料金プラン</h2>
-    <p class="section-lead">まずは初回トライアルから、お気軽にお試しいただけます。</p>
+    <p class="section-lead">
+      ご利用ペースに合わせて選べる、月1回〜月4回の定期プランをご用意しています。<br>
+      ご家庭の人数やご希望の品数に合わせて、メニュー内容はご相談しながら調整いたします。
+    </p>
     <div class="price-grid">
-      <div class="price-card featured">
-        <span class="badge">はじめての方はこちら</span>
-        <h3>初回トライアル</h3>
-        <p class="detail">3時間／6品目安</p>
-        <p class="price">9,800<small>円</small></p>
-      </div>
       <div class="price-card">
         <h3>月1回 定期プラン</h3>
         <p class="detail">3時間／6〜7品目安</p>
-        <p class="price">11,000<small>円／回</small></p>
+        <span class="price-label">月額（税込）</span>
+        <p class="price">11,000<small>円／月</small></p>
+        <p class="per-visit">1回あたり 11,000円（税込）</p>
       </div>
       <div class="price-card">
         <h3>月2回 定期プラン</h3>
         <p class="detail">3時間／6〜8品目安</p>
-        <p class="price">10,000<small>円／回</small></p>
+        <span class="price-label">月額（税込）</span>
+        <p class="price">20,000<small>円／月</small></p>
+        <p class="per-visit">1回あたり 10,000円（税込）</p>
+      </div>
+      <div class="price-card">
+        <h3>月3回 定期プラン</h3>
+        <p class="plan-tag">月2回では少し物足りない方へ</p>
+        <p class="detail">3時間／6〜8品目安</p>
+        <span class="price-label">月額（税込）</span>
+        <p class="price">29,400<small>円／月</small></p>
+        <p class="per-visit">1回あたり 9,800円（税込）</p>
       </div>
       <div class="price-card best">
         <span class="badge best">一番お得</span>
         <h3>月4回 定期プラン</h3>
         <p class="detail">3時間／6〜8品目安</p>
+        <span class="price-label">月額（税込）</span>
         <p class="price">38,000<small>円／月</small></p>
-        <p class="price-sub">1回あたり 9,500円</p>
-      </div>
-      <div class="price-card">
-        <h3>スポット利用</h3>
-        <p class="detail">3時間／6〜8品目安</p>
-        <p class="price">12,000<small>円〜</small></p>
+        <p class="per-visit">1回あたり 9,500円（税込）</p>
       </div>
     </div>
+    <p class="price-tax-note">料金はすべて税込価格です。食材費・交通費は別途実費を頂戴いたします。</p>
     <div class="option-grid">
       <div class="option-card">
         <h3>買い物代行（オプション）</h3>
@@ -1041,11 +1155,10 @@
       </div>
     </div>
     <ul class="price-notes">
-      <li>※食材費・交通費・駐車場代は別途頂戴します。</li>
+      <li>※駐車場代が必要な場合は、別途実費を頂戴します。</li>
       <li>※品数は食材、調理器具、キッチンの状況、メニュー内容によって前後します。</li>
       <li>※調理開始前に洗い物が多い場合は、調理時間が短くなり、品数が少なくなる場合があります。</li>
-      <li>※初回はヒアリングを含むため、品数が少なくなる場合があります。</li>
-      <li>※定期利用の方を優先してご予約を承ります。</li>
+      <li>※初回訪問時は、調理前にキッチンまわりの確認を行うため、品数が少なくなる場合があります。</li>
     </ul>
   </div>
 </section>
@@ -1094,8 +1207,8 @@
       <div class="flow-step">
         <div class="flow-num">2</div>
         <div class="flow-body">
-          <h3>ヒアリング</h3>
-          <p>ご家族の人数、お好み、苦手な食材、アレルギー、キッチン環境などをお聞きします。</p>
+          <h3>事前ヒアリング（オンラインまたはお電話）</h3>
+          <p>オンラインまたはお電話で30分ほど、ご家族の人数、苦手な食材、アレルギー、よく使う調味料などをお伺いします。キッチンの様子は、必要に応じてお写真で確認させていただきます。</p>
         </div>
       </div>
       <div class="flow-step">
@@ -1109,7 +1222,7 @@
         <div class="flow-num">4</div>
         <div class="flow-body">
           <h3>ご訪問・調理</h3>
-          <p>ご自宅のキッチンをお借りして、作り置きおかずをお作りします。</p>
+          <p>ご自宅のキッチンをお借りして、作り置きおかずをお作りします。調理前にキッチンまわりを簡単に確認し、無理のない内容で進めます。</p>
         </div>
       </div>
       <div class="flow-step">
@@ -1118,6 +1231,17 @@
           <h3>保存方法・メニューのご説明</h3>
           <p>作ったお料理の内容や保存の目安をお伝えします。</p>
         </div>
+      </div>
+    </div>
+
+    <!-- 初回ヒアリングについて -->
+    <div class="hearing-card">
+      <h3>初回ヒアリングについて</h3>
+      <p>初回は、事前にオンラインまたはお電話で30分ほどヒアリングを行います。</p>
+      <p>ご家族の人数、苦手な食材、アレルギー、よく使う調味料、作ってほしい料理の雰囲気などをお伺いし、当日のメニューを一緒に決めていきます。</p>
+      <p>キッチンの広さや調理器具、調味料については、必要に応じてお写真で確認させていただきます。初回訪問時にも、調理前に簡単にキッチンまわりを確認し、無理のない内容で調整いたします。</p>
+      <div class="hearing-note">
+        <p>※ヒアリング日は調理を行いません。<br>事前にご希望やご家庭の状況をお伺いし、初回訪問日に安心して調理できるよう準備するためのお時間です。</p>
       </div>
     </div>
   </div>
@@ -1137,14 +1261,16 @@
         </p>
         <p>
           調理師免許を持ち、これまで飲食店や家庭向けの料理代行で経験を積んできました。
-          家庭料理、作り置き、お子さまにも食べやすいおかず、ご家族の好みに合わせた味つけを大切にしています。
+          家庭料理を中心に、マクロビオティックの学びも活かしたやさしいごはん作りを大切にしています。
         </p>
         <p>
+          お子さまにも食べやすいおかずや、ご家族の好みに合わせた味つけで、
           毎日の食卓に取り入れやすい家庭料理を、食べきりやすい量で丁寧にお作りします。
         </p>
         <p>
           忙しい毎日の中で、冷蔵庫に手作りのおかずがある安心感をお届けできれば嬉しいです。
         </p>
+        <p class="profile-note">マダム・カーコのマクロビオティック講座 受講</p>
       </div>
     </div>
   </div>
@@ -1267,11 +1393,10 @@
             <label>ご希望のプラン</label>
             <select name="plan">
               <option value="未定・相談したい">未定・相談したい</option>
-              <option value="初回トライアル">初回トライアル</option>
               <option value="月1回 定期プラン">月1回 定期プラン</option>
               <option value="月2回 定期プラン">月2回 定期プラン</option>
+              <option value="月3回 定期プラン">月3回 定期プラン</option>
               <option value="月4回 定期プラン">月4回 定期プラン</option>
-              <option value="スポット利用">スポット利用</option>
             </select>
           </div>
           <div class="form-group">
@@ -1287,8 +1412,8 @@
 
 <!-- フッター -->
 <footer>
-  <p>まつかよの作り置きサポート｜神戸市北区の料理代行・作り置きサービス</p>
-  <p>&copy; 2026 まつかよの作り置きサポート</p>
+  <p>作り置きサポート｜神戸市北区の料理代行・作り置きサービス</p>
+  <p>&copy; 2026 作り置きサポート</p>
 </footer>
 
 <!-- スマホ用固定お問い合わせボタン -->
