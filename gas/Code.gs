@@ -10,6 +10,11 @@ var SHEET_NAME = 'お問い合わせ';
 // ホームページのURL（送信完了後のリダイレクト先）
 var HOMEPAGE_URL = 'https://tansym812-maker.github.io/cooking-service-homepage/';
 
+// ② LINE通知の設定（トークンはコードに直接書かない）
+//    GASエディタの「プロジェクトの設定（歯車）> スクリプト プロパティ」に以下の2つを登録する
+//    ・LINE_CHANNEL_ACCESS_TOKEN … Messaging APIのチャネルアクセストークン（長期）
+//    ・LINE_USER_ID              … 通知を受け取る自分のユーザーID（チャネル基本設定の「あなたのユーザーID」）
+
 // ===================================================
 // フォーム送信受信（POST）
 // ===================================================
@@ -34,6 +39,13 @@ function doPost(e) {
       ''
     ]);
 
+    // LINEに通知（失敗してもスプレッドシート記録には影響させない）
+    try {
+      sendLineNotification(params);
+    } catch (lineErr) {
+      // 通知失敗は無視（記録は済んでいるため）
+    }
+
     // 送信完了ページへリダイレクト
     var html = '<script>window.top.location.href="' + HOMEPAGE_URL + '?sent=1";</script>';
     return HtmlService.createHtmlOutput(html);
@@ -42,6 +54,84 @@ function doPost(e) {
     var errHtml = '<script>window.top.location.href="' + HOMEPAGE_URL + '?sent=error";</script>';
     return HtmlService.createHtmlOutput(errHtml);
   }
+}
+
+// ===================================================
+// 【一時的な診断用・確認が済んだら削除する】
+// LINE APIの生の応答を返す。GETでdiagキーを付けて呼び出す
+// ===================================================
+function doGet(e) {
+  var params = (e && e.parameter) || {};
+  if (params.diag !== 'mk20260707line') {
+    return ContentService.createTextOutput('ok');
+  }
+
+  var props  = PropertiesService.getScriptProperties();
+  var token  = props.getProperty('LINE_CHANNEL_ACCESS_TOKEN') || '';
+  var userId = props.getProperty('LINE_USER_ID') || '';
+
+  var info = 'token length: ' + token.length
+    + ' / token has whitespace: ' + (/\s/.test(token))
+    + '\nuserId: ' + userId.substring(0, 4) + '...(length ' + userId.length + ')'
+    + ' / userId has whitespace: ' + (/\s/.test(userId)) + '\n';
+
+  var res = UrlFetchApp.fetch('https://api.line.me/v2/bot/message/push', {
+    method: 'post',
+    contentType: 'application/json',
+    headers: { 'Authorization': 'Bearer ' + token.trim() },
+    payload: JSON.stringify({
+      to: userId.trim(),
+      messages: [{ type: 'text', text: '【診断】この通知が届けば連携成功です。' }]
+    }),
+    muteHttpExceptions: true
+  });
+
+  info += 'LINE API status: ' + res.getResponseCode() + '\n' + res.getContentText();
+  return ContentService.createTextOutput(info);
+}
+
+// ===================================================
+// LINE通知（Messaging APIのプッシュメッセージ）
+// ===================================================
+function sendLineNotification(params) {
+  var props  = PropertiesService.getScriptProperties();
+  var token  = props.getProperty('LINE_CHANNEL_ACCESS_TOKEN');
+  var userId = props.getProperty('LINE_USER_ID');
+
+  // スクリプトプロパティが未設定なら何もしない
+  if (!token || !userId) return;
+
+  var text = '【作り置きサポート】\n'
+    + '新しいお問い合わせが届きました。\n'
+    + '────────────\n'
+    + 'お名前：' + (params['namae'] || '未入力') + '\n'
+    + 'メール：' + (params['email'] || '未入力') + '\n'
+    + 'エリア：' + (params['area'] || '未入力') + '\n'
+    + 'プラン：' + (params['plan'] || '未入力') + '\n'
+    + '────────────\n'
+    + (params['message'] || '（お問い合わせ内容なし）');
+
+  UrlFetchApp.fetch('https://api.line.me/v2/bot/message/push', {
+    method: 'post',
+    contentType: 'application/json',
+    headers: { 'Authorization': 'Bearer ' + token },
+    payload: JSON.stringify({
+      to: userId,
+      messages: [{ type: 'text', text: text }]
+    })
+  });
+}
+
+// LINE通知のテスト（スクリプトプロパティ設定後に1回手動実行して確認する）
+function testLineNotification() {
+  sendLineNotification({
+    namae: 'テスト 太郎',
+    email: 'test@example.com',
+    area: '神戸市北区 藤原台',
+    plan: '月2回 定期プラン',
+    message: 'これはLINE通知のテストです。スマホにこのメッセージが届けば連携成功です。'
+  });
+  Logger.log('テスト通知を送信しました。LINEを確認してください。');
 }
 
 // ===================================================
