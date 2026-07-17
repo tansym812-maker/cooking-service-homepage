@@ -33,7 +33,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## 連絡先・差し替えポイント
 
 - メールアドレス: `mk.work@matsukayo-web.com`（変更時はmailtoリンク・表示テキストの全箇所を置換）
-- Instagram URL: 未設定。お問い合わせセクションの `href="#instagram-url"`（`id="instagram-link"`）を本物のURLに差し替える
+- LINE URL: 未設定。お問い合わせセクションの `href="#line-url"`（`id="line-link"`）を公式アカウントの友だち追加URL（lin.ee/〜）に差し替える（2026-07-17にInstagramボタンから変更）
 - お問い合わせフォームは GAS（Google Apps Script）連携でスプレッドシートに記録される。スクリプトは `gas/Code.gs`、エンドポイントは `index.html` 内の `script.google.com/macros/...` URL。GAS側を修正したら再デプロイして新URLに差し替えること
 - 「ある日の作り置き例」の6品の料理名は仮。実際の写真に合わせて品名も差し替える
 - FAQのキャンセルポリシー（前日50％・当日100％）は相場で入れた仮の数字。ユーザーに確認のうえ確定させる

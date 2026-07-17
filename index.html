@@ -7,19 +7,24 @@
 <meta name="description" content="神戸市北区（藤原台・岡場・有野・八多町周辺）の料理代行・作り置きサービス。調理師がご家庭に合わせた家庭料理を丁寧にお作りします。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   /* ===== 基本設定 ===== */
   :root {
-    --cream: #FDFCF8;        /* ベースの背景色（白に近いクリーム） */
-    --beige: #F6F1E7;        /* セクションの差し色背景（ベージュ） */
-    --green-main: #7A9D7E;   /* メインアクセント（淡いグリーン） */
-    --green-deep: #5F8264;   /* ボタンのホバーなど濃いめのグリーン */
-    --green-light: #EAF1EA;  /* 淡いグリーンの背景 */
-    --brown: #5C4B3F;        /* 見出し・本文の濃い色 */
-    --text: #4A4038;
-    --radius: 20px;
-    --shadow: 0 4px 16px rgba(92, 75, 63, 0.08);
+    --cream: #F8F3E9;        /* ベースの背景色（生成りのクリーム） */
+    --beige: #EFE6D4;        /* セクションの差し色背景（ベージュ） */
+    --sage: #8C9B72;         /* セージグリーン（装飾・アイコン） */
+    --sage-deep: #5F6E48;    /* 濃いめのセージ（見出し脇・強調） */
+    --sage-mist: #E9EBDA;    /* 淡いグリーンの背景 */
+    --terracotta: #C97C52;   /* CTAボタンのテラコッタ */
+    --terracotta-deep: #B0663F; /* ボタンのホバー */
+    --ink: #4A4235;          /* 本文の色 */
+    --heading: #3D3A2E;      /* 見出しの色 */
+    --line: #DFD4BE;         /* 罫線・カードの縁 */
+    --radius: 16px;
+    --shadow: 0 6px 20px rgba(90, 78, 60, 0.07);
+    --font-display: "Zen Old Mincho", "Hiragino Mincho ProN", serif;
+    --font-body: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", sans-serif;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -27,45 +32,62 @@
   html { scroll-behavior: smooth; }
 
   body {
-    font-family: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", sans-serif;
+    font-family: var(--font-body);
     background: var(--cream);
-    color: var(--text);
-    line-height: 1.9;
+    color: var(--ink);
+    line-height: 1.95;
     font-size: 16px;
   }
 
   img { max-width: 100%; display: block; }
 
+  a:focus-visible, button:focus-visible, summary:focus-visible,
+  input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: 2px solid var(--terracotta-deep);
+    outline-offset: 2px;
+  }
+
   .container {
-    max-width: 960px;
+    max-width: 980px;
     margin: 0 auto;
     padding: 0 20px;
   }
 
-  section { padding: 72px 0; }
+  section { padding: 80px 0; }
 
+  /* ===== 見出し（明朝＋枝葉の飾り） ===== */
   .section-title {
     text-align: center;
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: var(--brown);
-    margin-bottom: 12px;
+    font-family: var(--font-display);
+    font-size: 1.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--heading);
+    margin-bottom: 14px;
+    line-height: 1.6;
   }
 
-  .section-title::after {
-    content: "";
+  .title-sprig {
     display: block;
-    width: 48px;
-    height: 4px;
-    border-radius: 2px;
-    background: var(--green-main);
-    margin: 14px auto 0;
+    width: 64px;
+    height: 32px;
+    margin: 0 auto 6px;
+    color: var(--sage);
+    opacity: 0.85;
   }
 
   .section-lead {
     text-align: center;
-    max-width: 640px;
-    margin: 0 auto 44px;
+    max-width: 660px;
+    margin: 0 auto 48px;
+  }
+
+  /* ===== ボタニカル線画（余白の装飾） ===== */
+  .deco {
+    position: absolute;
+    color: var(--sage);
+    opacity: 0.4;
+    pointer-events: none;
   }
 
   /* ===== 写真の仮エリア（あとから差し替え） ===== */
@@ -89,9 +111,9 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(253, 250, 244, 0.95);
+    background: rgba(248, 243, 233, 0.94);
     backdrop-filter: blur(8px);
-    border-bottom: 1px solid #EFE6D6;
+    border-bottom: 1px solid var(--line);
   }
 
   .header-inner {
@@ -99,32 +121,34 @@
     align-items: center;
     justify-content: space-between;
     padding: 14px 20px;
-    max-width: 960px;
+    max-width: 980px;
     margin: 0 auto;
   }
 
   .logo {
-    font-weight: 700;
-    color: var(--brown);
-    font-size: 1.05rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--heading);
+    font-size: 1.1rem;
     text-decoration: none;
   }
 
-  .logo span { color: var(--green-main); }
+  .logo span { color: var(--sage-deep); }
 
   .header-cta {
-    background: var(--green-main);
+    background: var(--terracotta);
     color: #fff;
     text-decoration: none;
     font-weight: 700;
     font-size: 0.9rem;
-    padding: 10px 20px;
+    padding: 10px 22px;
     border-radius: 999px;
     transition: background 0.2s;
     white-space: nowrap;
   }
 
-  .header-cta:hover { background: var(--green-deep); }
+  .header-cta:hover { background: var(--terracotta-deep); }
 
   /* ===== ボタン共通 ===== */
   .btn {
@@ -155,7 +179,7 @@
   .icon-svg {
     width: 34px;
     height: 34px;
-    stroke: var(--green-main);
+    stroke: var(--sage);
     fill: none;
     stroke-width: 1.6;
     stroke-linecap: round;
@@ -165,68 +189,110 @@
   .btn:hover { transform: translateY(-2px); }
 
   .btn-primary {
-    background: var(--green-main);
+    background: var(--terracotta);
     color: #fff;
-    box-shadow: 0 6px 18px rgba(122, 157, 126, 0.35);
+    box-shadow: 0 6px 18px rgba(201, 124, 82, 0.35);
   }
 
-  .btn-primary:hover { background: var(--green-deep); }
+  .btn-primary:hover { background: var(--terracotta-deep); }
+
+  .btn-arrow::after {
+    content: "→";
+    font-weight: 400;
+    transition: transform 0.2s;
+  }
+
+  .btn-arrow:hover::after { transform: translateX(4px); }
 
   .btn-outline {
-    background: #fff;
-    color: var(--green-main);
-    border: 2px solid var(--green-main);
+    background: transparent;
+    color: var(--sage-deep);
+    border: 1.5px solid var(--sage-deep);
   }
 
-  .btn-outline:hover { background: var(--green-light); }
+  .btn-outline:hover { background: var(--sage-mist); }
 
   /* ===== 1. ファーストビュー ===== */
   .hero {
-    background: linear-gradient(180deg, #F1F6EF 0%, var(--cream) 100%);
-    padding: 64px 0 72px;
+    position: relative;
+    padding: 72px 0 88px;
+    overflow: hidden;
   }
 
   .hero-inner {
     display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 40px;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 48px;
     align-items: center;
+    position: relative;
   }
 
   .hero-area {
     display: inline-block;
-    background: var(--green-light);
-    color: var(--green-main);
-    font-weight: 700;
-    font-size: 0.85rem;
-    padding: 6px 16px;
-    border-radius: 999px;
-    margin-bottom: 18px;
-  }
-
-  .hero h1 {
-    font-size: 2rem;
-    color: var(--brown);
-    line-height: 1.5;
+    font-size: 0.88rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--sage-deep);
+    border-bottom: 1px solid var(--sage);
+    padding-bottom: 4px;
     margin-bottom: 22px;
   }
 
-  .hero h1 .accent { color: var(--green-main); }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--heading);
+    line-height: 1.65;
+    margin-bottom: 24px;
+  }
 
-  .hero p { margin-bottom: 30px; }
+  .hero h1 .accent { color: var(--sage-deep); }
+
+  .hero p { margin-bottom: 32px; }
 
   .hero-buttons {
     display: flex;
     gap: 14px;
     flex-wrap: wrap;
+    align-items: center;
   }
 
-  .hero-photo { aspect-ratio: 4 / 3; }
+  /* 有機的なブロブ型の写真マスク */
+  .hero-photo-wrap {
+    position: relative;
+  }
+
+  .hero-photo-wrap::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translate(14px, 14px);
+    border: 1.5px solid var(--sage);
+    border-radius: 58% 42% 52% 48% / 55% 48% 52% 45%;
+    opacity: 0.55;
+  }
+
+  .hero-photo {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3.4;
+    object-fit: cover;
+    border-radius: 58% 42% 52% 48% / 55% 48% 52% 45%;
+  }
+
+  .hero .deco-left { top: 8px; left: -28px; width: 130px; height: 70px; transform: rotate(-18deg); }
+  .hero .deco-right { bottom: -6px; right: -20px; width: 150px; height: 80px; transform: rotate(160deg); }
 
   /* ===== 2. サービス内容 ===== */
   .service-photo {
+    width: 100%;
     aspect-ratio: 16 / 7;
-    margin-bottom: 40px;
+    object-fit: cover;
+    max-height: 460px;
+    border-radius: 28px;
+    margin: 2rem 0;
   }
 
   .points-grid {
@@ -238,19 +304,20 @@
 
   .point-card {
     background: #fff;
+    border: 1px solid var(--line);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
-    padding: 26px 20px;
+    padding: 28px 20px;
     text-align: center;
   }
 
-  .point-card .icon {
-    margin-bottom: 10px;
-  }
+  .point-card .icon { margin-bottom: 10px; }
 
   .point-card h3 {
-    font-size: 1rem;
-    color: var(--brown);
+    font-family: var(--font-display);
+    font-size: 1.02rem;
+    font-weight: 600;
+    color: var(--heading);
     line-height: 1.6;
   }
 
@@ -271,8 +338,8 @@
 
   .service-tag {
     background: #fff;
-    border: 1.5px solid var(--green-main);
-    color: var(--green-main);
+    border: 1.5px solid var(--sage);
+    color: var(--sage-deep);
     font-weight: 500;
     font-size: 0.9rem;
     padding: 7px 18px;
@@ -287,7 +354,7 @@
   }
 
   /* ===== ある日の作り置き例 ===== */
-  .menu-example { background: var(--green-light); }
+  .menu-example { background: var(--sage-mist); }
 
   .menu-grid {
     display: grid;
@@ -297,9 +364,16 @@
 
   .menu-card {
     background: #fff;
+    border: 1px solid var(--line);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
     overflow: hidden;
+  }
+
+  .menu-card img {
+    aspect-ratio: 4 / 3;
+    width: 100%;
+    object-fit: cover;
   }
 
   .menu-card .photo-placeholder {
@@ -310,8 +384,10 @@
   }
 
   .menu-card h3 {
+    font-family: var(--font-display);
     font-size: 0.95rem;
-    color: var(--brown);
+    font-weight: 600;
+    color: var(--heading);
     text-align: center;
     padding: 14px 12px;
     line-height: 1.5;
@@ -328,14 +404,17 @@
   .contact-form {
     margin-top: 36px;
     padding-top: 32px;
-    border-top: 1px solid #EFE6D6;
+    border-top: 1px solid var(--line);
     text-align: left;
   }
 
   .contact-form h3 {
     text-align: center;
-    color: var(--brown);
-    font-size: 1.1rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--heading);
+    font-size: 1.15rem;
     margin-bottom: 20px;
   }
 
@@ -345,12 +424,12 @@
     display: block;
     font-weight: 700;
     font-size: 0.9rem;
-    color: var(--brown);
+    color: var(--heading);
     margin-bottom: 6px;
   }
 
   .form-group label .required {
-    background: var(--green-main);
+    background: var(--terracotta);
     color: #fff;
     font-size: 0.7rem;
     font-weight: 700;
@@ -365,11 +444,11 @@
   .form-group textarea {
     width: 100%;
     padding: 12px 16px;
-    border: 1.5px solid #E0D8C8;
+    border: 1.5px solid var(--line);
     border-radius: 12px;
     font-family: inherit;
     font-size: 1rem;
-    color: var(--text);
+    color: var(--ink);
     background: var(--cream);
     transition: border-color 0.2s;
   }
@@ -378,7 +457,7 @@
   .form-group select:focus,
   .form-group textarea:focus {
     outline: none;
-    border-color: var(--green-main);
+    border-color: var(--sage);
     background: #fff;
   }
 
@@ -400,14 +479,14 @@
     text-align: center;
   }
   .form-success-msg {
-    background: #e8f5e9;
-    border: 1px solid #a5d6a7;
-    color: #2e7d32;
+    background: #EDF2E4;
+    border: 1px solid #B7C79E;
+    color: #4C6132;
   }
   .form-error-msg {
-    background: #fff3e0;
-    border: 1px solid #ffcc80;
-    color: #e65100;
+    background: #F9EBE0;
+    border: 1px solid #E0B694;
+    color: #A05423;
   }
 
   /* ===== 3. こんな方におすすめ ===== */
@@ -423,7 +502,8 @@
 
   .check-list li {
     background: #fff;
-    border-radius: 16px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
     box-shadow: var(--shadow);
     padding: 16px 20px 16px 52px;
     position: relative;
@@ -437,7 +517,7 @@
     transform: translateY(-50%);
     width: 24px;
     height: 24px;
-    background: var(--green-main);
+    background: var(--sage);
     color: #fff;
     border-radius: 50%;
     display: flex;
@@ -458,17 +538,17 @@
 
   .price-card {
     background: #fff;
+    border: 1px solid var(--line);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
     padding: 34px 24px 28px;
     text-align: center;
     position: relative;
-    border: 2px solid transparent;
   }
 
   .price-card.best {
-    border-color: #D97B3A;
-    background: linear-gradient(135deg, #fffdf9 0%, #fff5ea 100%);
+    border: 2px solid var(--terracotta);
+    background: linear-gradient(135deg, #FFFDF8 0%, #FBF1E6 100%);
   }
 
   .price-card .badge {
@@ -476,7 +556,7 @@
     top: -14px;
     left: 50%;
     transform: translateX(-50%);
-    background: var(--green-main);
+    background: var(--sage);
     color: #fff;
     font-size: 0.78rem;
     font-weight: 700;
@@ -486,20 +566,21 @@
   }
 
   .price-card .badge.best {
-    background: #D97B3A;
+    background: var(--terracotta);
     font-size: 0.82rem;
     padding: 5px 20px;
   }
 
   .price-card h3 {
-    color: var(--brown);
-    font-size: 1.1rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--heading);
+    font-size: 1.12rem;
     margin-bottom: 6px;
   }
 
-  .price-card.best h3 {
-    font-size: 1.2rem;
-  }
+  .price-card.best h3 { font-size: 1.22rem; }
 
   .price-card .plan-tag {
     font-size: 0.82rem;
@@ -523,27 +604,29 @@
   }
 
   .price-card .price {
+    font-family: var(--font-display);
     font-size: 2rem;
-    font-weight: 700;
-    color: var(--green-main);
+    font-weight: 600;
+    color: var(--sage-deep);
     line-height: 1.3;
   }
 
   .price-card.best .price {
     font-size: 2.2rem;
-    color: #D97B3A;
+    color: var(--terracotta);
   }
 
   .price-card .price small {
+    font-family: var(--font-body);
     font-size: 0.85rem;
-    color: var(--text);
+    color: var(--ink);
     font-weight: 400;
   }
 
   .price-card .per-visit {
     display: inline-block;
-    background: var(--green-light);
-    color: var(--brown);
+    background: var(--sage-mist);
+    color: var(--heading);
     font-size: 0.88rem;
     font-weight: 700;
     border-radius: 999px;
@@ -552,16 +635,16 @@
   }
 
   .price-card.best .per-visit {
-    background: #FBE8D8;
-    color: #B45E24;
+    background: #F7E3D2;
+    color: #A05423;
   }
 
   .price-tax-note {
     text-align: center;
     font-size: 0.92rem;
     font-weight: 700;
-    color: var(--brown);
-    background: var(--green-light);
+    color: var(--heading);
+    background: var(--sage-mist);
     border-radius: 999px;
     padding: 12px 24px;
     max-width: 640px;
@@ -576,29 +659,31 @@
   }
 
   .option-card {
-    background: var(--green-light);
+    background: var(--sage-mist);
     border-radius: var(--radius);
     padding: 22px 24px;
     text-align: center;
   }
 
   .option-card h3 {
-    color: var(--green-main);
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--sage-deep);
     font-size: 1rem;
     margin-bottom: 4px;
   }
 
   .option-card .price {
     font-weight: 700;
-    color: var(--brown);
+    color: var(--heading);
   }
 
   .option-card .detail { font-size: 0.85rem; color: #8A7B6C; }
 
   .price-notes {
     background: #fff;
+    border: 1px solid var(--line);
     border-radius: var(--radius);
-    box-shadow: var(--shadow);
     padding: 24px 28px;
     margin-top: 32px;
     font-size: 0.85rem;
@@ -621,7 +706,11 @@
     align-items: center;
   }
 
-  .area-photo { aspect-ratio: 4 / 3; }
+  .area-photo {
+    width: 100%;
+    max-width: 480px;
+    border-radius: 40% 60% 55% 45% / 48% 45% 55% 52%;
+  }
 
   .area-tags {
     display: flex;
@@ -632,8 +721,8 @@
 
   .area-tag {
     background: #fff;
-    border: 1.5px solid var(--green-main);
-    color: var(--green-main);
+    border: 1.5px solid var(--sage);
+    color: var(--sage-deep);
     font-weight: 500;
     font-size: 0.9rem;
     padding: 7px 18px;
@@ -665,8 +754,8 @@
     left: 23px;
     top: 48px;
     bottom: 0;
-    width: 2px;
-    background: #E5D9C5;
+    width: 1.5px;
+    background: var(--line);
   }
 
   .flow-step:last-child::before { display: none; }
@@ -676,10 +765,11 @@
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    background: var(--green-main);
+    background: var(--sage);
     color: #fff;
-    font-weight: 700;
-    font-size: 1.1rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.15rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -687,14 +777,17 @@
 
   .flow-body {
     background: #fff;
-    border-radius: 16px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
     box-shadow: var(--shadow);
     padding: 18px 22px;
     flex: 1;
   }
 
   .flow-body h3 {
-    color: var(--brown);
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--heading);
     font-size: 1.05rem;
     margin-bottom: 4px;
   }
@@ -705,13 +798,17 @@
     max-width: 640px;
     margin: 40px auto 0;
     background: #fff;
+    border: 1px solid var(--line);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
     padding: 30px 32px;
   }
 
   .hearing-card h3 {
-    color: var(--brown);
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--heading);
     font-size: 1.1rem;
     text-align: center;
     margin-bottom: 16px;
@@ -723,7 +820,7 @@
   }
 
   .hearing-note {
-    background: var(--green-light);
+    background: var(--sage-mist);
     border-radius: 14px;
     padding: 16px 20px;
     margin-top: 4px;
@@ -731,15 +828,18 @@
 
   .hearing-note p {
     font-size: 0.9rem;
-    color: var(--brown);
+    color: var(--heading);
     margin-bottom: 0;
   }
 
   /* ===== 7. 自己紹介 ===== */
-  .profile { background: var(--beige); }
+  .profile { background: var(--beige); position: relative; overflow: hidden; }
+
+  .profile .deco-profile { bottom: 18px; right: -22px; width: 150px; height: 80px; transform: rotate(200deg); }
 
   .profile-card {
     background: #fff;
+    border: 1px solid var(--line);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
     padding: 40px;
@@ -750,19 +850,24 @@
   }
 
   .profile-photo {
+    width: 100%;
+    max-width: 340px;
     aspect-ratio: 1 / 1;
-    border-radius: 50%;
-    overflow: hidden;
+    object-fit: cover;
+    border-radius: 55% 45% 48% 52% / 50% 52% 48% 50%;
   }
 
   .profile-body h3 {
-    color: var(--brown);
-    font-size: 1.15rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--heading);
+    font-size: 1.2rem;
     margin-bottom: 14px;
   }
 
   .profile-body .name {
-    color: var(--green-main);
+    color: var(--sage-deep);
     font-weight: 700;
   }
 
@@ -776,7 +881,7 @@
   }
 
   /* ===== 安心してご利用いただくために ===== */
-  .safety { background: var(--green-light); }
+  .safety { background: var(--sage-mist); }
 
   .safety-grid {
     display: grid;
@@ -788,6 +893,7 @@
 
   .safety-card {
     background: #fff;
+    border: 1px solid var(--line);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
     padding: 26px 24px;
@@ -797,8 +903,10 @@
   .safety-card .icon { margin-bottom: 10px; }
 
   .safety-card h3 {
-    font-size: 1rem;
-    color: var(--brown);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.02rem;
+    color: var(--heading);
     margin-bottom: 8px;
   }
 
@@ -809,7 +917,8 @@
 
   .faq-item {
     background: #fff;
-    border-radius: 16px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
     box-shadow: var(--shadow);
     overflow: hidden;
   }
@@ -818,7 +927,7 @@
     cursor: pointer;
     padding: 18px 48px 18px 56px;
     font-weight: 700;
-    color: var(--brown);
+    color: var(--heading);
     position: relative;
     list-style: none;
   }
@@ -832,13 +941,14 @@
     top: 16px;
     width: 26px;
     height: 26px;
-    background: var(--green-main);
+    background: var(--sage);
     color: #fff;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 0.85rem;
+    font-family: var(--font-display);
   }
 
   .faq-item summary::after {
@@ -847,7 +957,7 @@
     right: 18px;
     top: 50%;
     transform: translateY(-50%);
-    color: var(--green-main);
+    color: var(--sage-deep);
     font-weight: 700;
   }
 
@@ -866,29 +976,35 @@
     top: -2px;
     width: 26px;
     height: 26px;
-    background: var(--green-main);
+    background: var(--terracotta);
     color: #fff;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 0.85rem;
-    font-weight: 700;
+    font-family: var(--font-display);
   }
 
   /* ===== 9. お問い合わせ ===== */
   .contact {
-    background: linear-gradient(180deg, var(--cream) 0%, #EFF5EE 100%);
+    position: relative;
+    background: linear-gradient(180deg, var(--cream) 0%, var(--sage-mist) 100%);
+    overflow: hidden;
   }
+
+  .contact .deco-contact { top: 30px; left: -24px; width: 140px; height: 76px; transform: rotate(-14deg); }
 
   .contact-card {
     background: #fff;
-    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    border-radius: 24px;
     box-shadow: var(--shadow);
     padding: 48px 32px;
     text-align: center;
     max-width: 640px;
     margin: 0 auto;
+    position: relative;
   }
 
   .contact-buttons {
@@ -903,15 +1019,17 @@
     color: #8A7B6C;
   }
 
-  .contact-email a { color: var(--green-main); font-weight: 700; }
+  .contact-email a { color: var(--sage-deep); font-weight: 700; }
 
   /* ===== フッター ===== */
   footer {
-    background: var(--brown);
-    color: #E5D9C5;
+    background: #48452F;
+    color: #E6DEC9;
     text-align: center;
-    padding: 28px 20px;
+    padding: 30px 20px;
     font-size: 0.85rem;
+    font-family: var(--font-display);
+    letter-spacing: 0.06em;
   }
 
   /* ===== スマホ用固定ボタン ===== */
@@ -926,24 +1044,28 @@
 
   .fixed-cta .btn {
     width: 100%;
-    box-shadow: 0 8px 24px rgba(122, 157, 126, 0.45);
+    box-shadow: 0 8px 24px rgba(201, 124, 82, 0.45);
   }
 
   /* ===== レスポンシブ ===== */
   @media (max-width: 768px) {
-    section { padding: 56px 0; }
+    section { padding: 60px 0; }
 
-    .section-title { font-size: 1.35rem; }
+    .section-title { font-size: 1.4rem; }
 
-    .hero { padding: 40px 0 56px; }
+    .hero { padding: 44px 0 60px; }
 
-    .hero-inner { grid-template-columns: 1fr; gap: 28px; }
+    .hero-inner { grid-template-columns: 1fr; gap: 36px; }
 
-    .hero h1 { font-size: 1.5rem; }
+    .hero h1 { font-size: 1.55rem; }
 
     .hero-buttons { flex-direction: column; }
 
     .hero-buttons .btn { width: 100%; }
+
+    .hero .deco-left, .hero .deco-right { display: none; }
+
+    .hero-photo-wrap { max-width: 340px; margin: 0 auto; }
 
     .points-grid { grid-template-columns: 1fr; gap: 12px; }
 
@@ -953,11 +1075,13 @@
 
     .point-card { padding: 20px 12px; }
 
-    .point-card h3 { font-size: 0.88rem; }
+    .point-card h3 { font-size: 0.92rem; }
 
     .price-grid, .option-grid, .safety-grid { grid-template-columns: 1fr; }
 
     .area-inner { grid-template-columns: 1fr; }
+
+    .area-photo { margin: 0 auto; }
 
     .profile-card {
       grid-template-columns: 1fr;
@@ -975,9 +1099,27 @@
 
     body { padding-bottom: 80px; }
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition: none !important; }
+  }
 </style>
 </head>
 <body>
+
+<!-- 枝葉の線画（ページ内で使い回すシンボル） -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="sprig" viewBox="0 0 80 40">
+    <g fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 34 C 24 28, 54 17, 74 6"/>
+      <path d="M22 28 q -1 -8 6 -12 q 1 8 -6 12"/>
+      <path d="M33 24 q 7 -5 14 -3 q -7 5 -14 3"/>
+      <path d="M42 19 q -1 -8 6 -12 q 1 8 -6 12"/>
+      <path d="M55 14 q 7 -5 14 -3 q -7 5 -14 3"/>
+    </g>
+  </symbol>
+</svg>
 
 <!-- ヘッダー -->
 <header>
@@ -990,6 +1132,8 @@
 <!-- 1. ファーストビュー -->
 <section class="hero">
   <div class="container hero-inner">
+    <svg class="deco deco-left" aria-hidden="true"><use href="#sprig"/></svg>
+    <svg class="deco deco-right" aria-hidden="true"><use href="#sprig"/></svg>
     <div>
       <span class="hero-area">神戸市北区｜藤原台・岡場・有野・八多町</span>
       <h1>神戸市北区のご家庭へ<br>調理師が作る、<span class="accent">やさしい作り置き</span>サポート</h1>
@@ -999,23 +1143,26 @@
         ご家庭の好みや生活に合わせて、食べきりやすいおかずを丁寧にお作りします。
       </p>
       <div class="hero-buttons">
-        <a href="#contact" class="btn btn-primary">お問い合わせする</a>
+        <a href="#contact" class="btn btn-primary btn-arrow">お問い合わせする</a>
         <a href="#price" class="btn btn-outline">料金プランを見る</a>
       </div>
     </div>
-    <img src="images/hero.png" alt="家庭料理の作り置きおかず" class="hero-photo" style="width:100%;border-radius:var(--radius);object-fit:cover;">
+    <div class="hero-photo-wrap">
+      <img src="images/hero.png" alt="家庭料理の作り置きおかず" class="hero-photo">
+    </div>
   </div>
 </section>
 
 <!-- 2. サービス内容 -->
 <section id="service">
   <div class="container">
+    <svg class="title-sprig" aria-hidden="true"><use href="#sprig"/></svg>
     <h2 class="section-title">作り置き・家庭料理のサポート</h2>
     <p class="section-lead">
       ご自宅のキッチンをお借りして、3時間で6〜8品前後のメニューをお作りします。<br>
       事前にお好みや苦手な食材、アレルギー、食べる人数などをお聞きし、ご家庭に合わせたメニューをご提案します。
     </p>
-    <img src="images/service.png" alt="作り置きおかずが並んだようす" class="service-photo" style="width:100%;border-radius:var(--radius);margin:2rem 0;object-fit:cover;max-height:460px;">
+    <img src="images/service.png" alt="作り置きおかずが並んだようす" class="service-photo">
     <div class="points-grid">
       <div class="point-card">
         <div class="icon"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
@@ -1047,6 +1194,7 @@
 <!-- ある日の作り置き例 -->
 <section class="menu-example">
   <div class="container">
+    <svg class="title-sprig" aria-hidden="true"><use href="#sprig"/></svg>
     <h2 class="section-title">ある日の作り置き例</h2>
     <p class="section-lead">
       たとえば、こんなおかずをお作りしています。<br>
@@ -1087,6 +1235,7 @@
 <!-- 3. こんな方におすすめ -->
 <section class="recommend">
   <div class="container">
+    <svg class="title-sprig" aria-hidden="true"><use href="#sprig"/></svg>
     <h2 class="section-title">こんな方におすすめです</h2>
     <p class="section-lead">ひとつでも当てはまる方は、お気軽にご相談ください。</p>
     <ul class="check-list">
@@ -1104,6 +1253,7 @@
 <!-- 4. 料金プラン -->
 <section id="price">
   <div class="container">
+    <svg class="title-sprig" aria-hidden="true"><use href="#sprig"/></svg>
     <h2 class="section-title">料金プラン</h2>
     <p class="section-lead">
       ご利用ペースに合わせて選べる、月1回〜月4回の定期プランをご用意しています。<br>
@@ -1166,9 +1316,10 @@
 <!-- 5. 対応エリア -->
 <section class="area">
   <div class="container">
+    <svg class="title-sprig" aria-hidden="true"><use href="#sprig"/></svg>
     <h2 class="section-title">対応エリア</h2>
     <div class="area-inner">
-      <img src="images/area.png" alt="担当エリア：兵庫県神戸市北区" class="area-photo" style="width:100%;max-width:480px;border-radius:var(--radius);">
+      <img src="images/area.png" alt="担当エリア：兵庫県神戸市北区" class="area-photo">
 
       <div>
         <p>神戸市北区を中心に対応しています。</p>
@@ -1194,6 +1345,7 @@
 <!-- 6. ご利用の流れ -->
 <section>
   <div class="container">
+    <svg class="title-sprig" aria-hidden="true"><use href="#sprig"/></svg>
     <h2 class="section-title">ご利用の流れ</h2>
     <p class="section-lead">お問い合わせから当日まで、はじめての方も安心の流れです。</p>
     <div class="flow-list">
@@ -1201,7 +1353,7 @@
         <div class="flow-num">1</div>
         <div class="flow-body">
           <h3>お問い合わせ</h3>
-          <p>Instagram DMまたはメールよりご連絡ください。</p>
+          <p>LINEまたはメールよりご連絡ください。</p>
         </div>
       </div>
       <div class="flow-step">
@@ -1248,10 +1400,12 @@
 
 <!-- 7. 自己紹介 -->
 <section class="profile">
+  <svg class="deco deco-profile" aria-hidden="true"><use href="#sprig"/></svg>
   <div class="container">
+    <svg class="title-sprig" aria-hidden="true"><use href="#sprig"/></svg>
     <h2 class="section-title">調理師が、ご家庭に合わせてお作りします</h2>
     <div class="profile-card">
-      <img src="images/profile.png" alt="松山佳世 プロフィール" class="profile-photo" style="width:100%;max-width:340px;border-radius:var(--radius);">
+      <img src="images/profile.png" alt="松山佳世 プロフィール" class="profile-photo">
 
       <div class="profile-body">
         <h3>はじめまして</h3>
@@ -1278,6 +1432,7 @@
 <!-- 安心してご利用いただくために -->
 <section class="safety">
   <div class="container">
+    <svg class="title-sprig" aria-hidden="true"><use href="#sprig"/></svg>
     <h2 class="section-title">安心してご利用いただくために</h2>
     <p class="section-lead">
       ご自宅にお伺いするサービスだからこそ、衛生面と信頼を大切にしています。
@@ -1310,6 +1465,7 @@
 <!-- 8. よくある質問 -->
 <section>
   <div class="container">
+    <svg class="title-sprig" aria-hidden="true"><use href="#sprig"/></svg>
     <h2 class="section-title">よくある質問</h2>
     <div class="faq-list">
       <details class="faq-item">
@@ -1342,16 +1498,18 @@
 
 <!-- 9. お問い合わせ -->
 <section class="contact" id="contact">
+  <svg class="deco deco-contact" aria-hidden="true"><use href="#sprig"/></svg>
   <div class="container">
     <div class="contact-card">
+      <svg class="title-sprig" aria-hidden="true"><use href="#sprig"/></svg>
       <h2 class="section-title">まずはお気軽にご相談ください</h2>
       <p>
         ご家庭の状況やご希望に合わせて、無理なく続けられる形をご提案します。<br>
         「月1回だけお願いしたい」「まずは試してみたい」「親の食事を相談したい」など、お気軽にお問い合わせください。
       </p>
       <div class="contact-buttons">
-        <!-- ↓ InstagramのURLは「#instagram-url」をご自身のプロフィールURLに差し替えてください -->
-        <a href="#instagram-url" class="btn btn-primary" id="instagram-link"><svg class="btn-icon" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"></rect><path d="M8 7l1.5-3h5L16 7"></path><circle cx="12" cy="13.5" r="3.5"></circle></svg>Instagramで問い合わせる</a>
+        <!-- ↓ LINEのURLは「#line-url」を公式アカウントの友だち追加URL（lin.ee/〜）に差し替えてください -->
+        <a href="#line-url" class="btn btn-primary" id="line-link"><svg class="btn-icon" viewBox="0 0 24 24"><path d="M21 11.5a8.5 7.5 0 0 1-8.5 7.5c-.9 0-1.8-.1-2.6-.3L5 21l1-3.2A7.4 7.4 0 0 1 4 11.5 8.5 7.5 0 0 1 12.5 4 8.5 7.5 0 0 1 21 11.5z"></path></svg>LINEで問い合わせる</a>
         <a href="mailto:mk.work@matsukayo-web.com" class="btn btn-outline"><svg class="btn-icon" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg>メールで問い合わせる</a>
       </div>
       <p class="contact-email">
