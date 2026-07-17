@@ -57,40 +57,6 @@ function doPost(e) {
 }
 
 // ===================================================
-// 【一時的な診断用・確認が済んだら削除する】
-// LINE APIの生の応答を返す。GETでdiagキーを付けて呼び出す
-// ===================================================
-function doGet(e) {
-  var params = (e && e.parameter) || {};
-  if (params.diag !== 'mk20260707line') {
-    return ContentService.createTextOutput('ok');
-  }
-
-  var props  = PropertiesService.getScriptProperties();
-  var token  = props.getProperty('LINE_CHANNEL_ACCESS_TOKEN') || '';
-  var userId = props.getProperty('LINE_USER_ID') || '';
-
-  var info = 'token length: ' + token.length
-    + ' / token has whitespace: ' + (/\s/.test(token))
-    + '\nuserId: ' + userId.substring(0, 4) + '...(length ' + userId.length + ')'
-    + ' / userId has whitespace: ' + (/\s/.test(userId)) + '\n';
-
-  var res = UrlFetchApp.fetch('https://api.line.me/v2/bot/message/push', {
-    method: 'post',
-    contentType: 'application/json',
-    headers: { 'Authorization': 'Bearer ' + token.trim() },
-    payload: JSON.stringify({
-      to: userId.trim(),
-      messages: [{ type: 'text', text: '【診断】この通知が届けば連携成功です。' }]
-    }),
-    muteHttpExceptions: true
-  });
-
-  info += 'LINE API status: ' + res.getResponseCode() + '\n' + res.getContentText();
-  return ContentService.createTextOutput(info);
-}
-
-// ===================================================
 // LINE通知（Messaging APIのプッシュメッセージ）
 // ===================================================
 function sendLineNotification(params) {
