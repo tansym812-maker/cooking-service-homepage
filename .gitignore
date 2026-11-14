@@ -1,0 +1,11 @@
+# GAS のコード（公開リポジトリに置くとウェブで誰でも読めるため除外）
+# 手元と Google 側のプロジェクトで管理する。clasp push でGASへ反映する
+gas/
+
+# 作業メモ・下書き（サイトの表示には不要）
+CLAUDE.md
+googleビジネスプロフィール登録手順.md
+plans/
+
+# macOS
+.DS_Store
